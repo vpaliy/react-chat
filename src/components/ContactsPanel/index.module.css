@@ -1,0 +1,9 @@
+.component {
+  flex: 1 1 100%;
+  border-bottom: 2rem solid #fafafa;
+  margin: 0;
+  display: flex;
+  overflow: none;
+  flex-direction: column;
+  -webkit-overflow-scrolling: touch;
+}

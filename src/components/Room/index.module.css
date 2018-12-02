@@ -1,0 +1,34 @@
+.component {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  list-style: none;
+  cursor: pointer;
+  font-weight: bold;
+  user-select: none;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.component:hover {
+  background: rgba(0, 0, 0, 0.015);
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.component[disabled] {
+  background: rgba(0, 0, 0, 0.015);
+  color: rgba(0, 0, 0, 0.62);
+}
+
+span {
+  display: block;
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.3rem;
+    background: #e0e0e0;
+}
