@@ -1,29 +1,27 @@
 import React from 'react'
 import ProfileHeader from './ProfileHeader'
 import ContactsPanel from './ContactsPanel'
-import CreateChatFooter from './CreateChatFooter'
 import RoomHeader from './RoomHeader'
 import ChatPanel from './ChatPanel'
-import MessageFooter from './MessageFooter'
+import CreateMessageForm from './CreateMessage'
+import CreateChatForm from './CreateChat'
 import { style } from './index.module.css'
 
-const MainPage = () => (
+const App = () => (
   <main>
     <aside>
       <ProfileHeader />
       <ContactsPanel />
+      <CreateChatForm />
     </aside>
     <section>
       <RoomHeader />
-      <ChatPanel />
+      <col->
+        <ChatPanel />
+        <CreateMessageForm />
+      </col->
     </section>
   </main>
 )
-
-class App extends React.Component {
-  render() {
-    return <MainPage />
-  }
-}
 
 export default App;

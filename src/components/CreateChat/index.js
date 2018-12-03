@@ -3,15 +3,15 @@ import { actions } from '../'
 import { connect } from 'react-redux'
 import style from './index.module.css'
 
-class CreateMessageForm extends React.Component {
+class CreateChatFooter extends React.Component {
   messageInput = React.createRef()
 
-  onSend = event => {
+  onCreate = event => {
     event.preventDefault()
     const input = this.messageInput.current
-    const onSubmit = this.props
+    const createRoom = this.props
 
-    onSubmit(input.value)
+    createRoom(input.value)
   }
 
   render() {
@@ -21,11 +21,11 @@ class CreateMessageForm extends React.Component {
         onSubmit={this.onSubmit} >
         <input
           type="text"
-          placeholder="Message..." />
+          placeholder="Create Room" />
         <button
           type="submit">
           <svg>
-            <use xlinkHref="index.svg#send" />
+            <use xlinkHref="index.svg#add" />
           </svg>
         </button>
       </form>
@@ -34,11 +34,11 @@ class CreateMessageForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: message =>
-    dispatch(actions.sendMessage(message))
+  createRoom: roomName =>
+    dispatch(actions.createRoom(roomName))
 })
 
 export default connect(
   null,
   mapDispatchToProps
-)(CreateMessageForm)
+)(CreateChatFooter)
