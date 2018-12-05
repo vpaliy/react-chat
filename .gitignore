@@ -1,5 +1,6 @@
 # dependencies
-/node_modules
+
+node_modules/
 /.pnp
 .pnp.js
 
@@ -22,3 +23,66 @@ requests.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+__pycache__
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# SQLite databases
+*.sqlite
+
+# Virtual environment
+venv
+venv3
+env
+.env
+
+# PyCharm
+.idea/*
+
+# Visual Studio
+*.suo
+*.pyproj*
+obj
+ptvs_virtualenv_proxy.py
+web.config
+web.debug.config
+
+# Other
+todo-list
+
+# VIM
+*.swp
