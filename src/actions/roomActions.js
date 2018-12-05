@@ -45,8 +45,9 @@ export const deleteRoom = (room, index) => dispatch => {
   })
 }
 
-export const createRoom = (name) => dispatch => {
+export const createRoom = name => dispatch => {
   dispatch({
-    type: 'create-room-start',
+    type: 'create-room',
+    name
   })
 }

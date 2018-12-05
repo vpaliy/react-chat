@@ -13,7 +13,7 @@ const emptyList = (
 )
 
 const MessageList = ({ messages = {}, user = {} }) => (
-  <ul id="messages" className={style.component + "h-100"}>
+  <ul id="messages" className={style.component}>
     {messages.length > 0 ? (
       <wrapper->
         {messages

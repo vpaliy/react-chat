@@ -8,8 +8,9 @@ class CreateChatFooter extends React.Component {
 
   onCreate = event => {
     event.preventDefault()
+
     const input = this.messageInput.current
-    const createRoom = this.props
+    const { createRoom } = this.props
 
     createRoom(input.value)
   }
@@ -18,8 +19,9 @@ class CreateChatFooter extends React.Component {
     return (
       <form
         className={style.component}
-        onSubmit={this.onSubmit} >
+        onSubmit={this.onCreate} >
         <input
+          ref={this.messageInput}
           type="text"
           placeholder="Create Room" />
         <button

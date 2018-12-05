@@ -42,6 +42,15 @@ const fetchContacts = (state=initialState, action) => {
           room => ({...room, active: room.id === action.id })
         )
       }
+    case 'create-room':
+      const rooms = state.rooms.slice()
+      rooms.push({
+        id: 12,
+        avatarUrl: "https://www.gravatar.com/avatar/ggdfsgfdg123gdf?d=identicon&s=46",
+        roomName: action.name,
+        active: false
+      })
+      return { ...state, rooms }
     case 'delete-room-start':
       return {
         ...state,

@@ -9,17 +9,23 @@ class CreateMessageForm extends React.Component {
   onSend = event => {
     event.preventDefault()
     const input = this.messageInput.current
-    const onSubmit = this.props
+    const { onSubmit } = this.props
+
+    if (!input.value) {
+      return;
+    }
 
     onSubmit(input.value)
+    input.value = null
   }
 
   render() {
     return (
       <form
         className={style.component}
-        onSubmit={this.onSubmit} >
+        onSubmit={this.onSend} >
         <input
+          ref={this.messageInput}
           type="text"
           placeholder="Message..." />
         <button
@@ -39,6 +45,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(
-  null,
+  () => {},
   mapDispatchToProps
 )(CreateMessageForm)

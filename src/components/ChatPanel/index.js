@@ -14,9 +14,8 @@ class ChatPanel extends React.Component {
       periods
     } = this.props
     return (
-      <div className="h-100">
-        <MessageList messages={periods[0].messages} />
-      </div>
+      <MessageList
+        messages={periods[0].messages} />
     )
   }
 }
@@ -26,7 +25,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: () => dispatch(actions.fetchChat())
+  onLoad: () =>
+    dispatch(actions.fetchChat())
 })
 
 export default connect(

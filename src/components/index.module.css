@@ -60,6 +60,7 @@ aside {
     background: #fcfcfc;
     z-index: 2;
     transform: rotateY(360deg);
+    overflow: hidden;
 }
 
 section {
@@ -68,6 +69,7 @@ section {
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
 }
 
 row- {
@@ -85,6 +87,7 @@ col- {
     justify-content: flex-end;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
 }
 
 section:not(.dragging)>input[type='file'] {

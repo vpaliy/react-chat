@@ -1,36 +1,38 @@
 .component {
-  flex: 1 1 100%;
-  padding: 1rem;
-  border-bottom: 2rem solid #fafafa;
-  margin: 0;
-  display: flex;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+    flex: 1 1 100%;
+    margin: 0;
+    padding: 1rem;
+    display: flex;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
 }
 
 .component > wrapper- {
-  width: 100%;
-  margin-top: auto;
-  display: flex;
-  flex-direction: column-reverse;
+    display: flex;
+    margin-top: auto;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    flex-direction: column-reverse;
 }
 
 .empty {
-  margin: auto;
-  text-align: center;
-  color: #b6b6b6;
+    margin: auto;
+    text-align: center;
+    color: #b6b6b6;
 }
 
-.empty > * + * {
-  margin-top: 1rem;
+.empty > *+* {
+    margin-top: 1rem;
 }
 
 .empty > span {
-  font-size: 3rem;
+    font-size: 3rem;
 }
 
 .empty > p {
-  font-size: 1rem;
-  line-height: 150%;
-  max-width: 40ex;
+    font-size: 1rem;
+    line-height: 150%;
+    max-width: 40ex;
 }

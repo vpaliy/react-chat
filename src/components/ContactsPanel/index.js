@@ -1,6 +1,7 @@
 import React from 'react'
 import RoomsList from '../RoomsList'
 import PeopleList from '../PeopleList'
+import CustomScroll from 'react-custom-scroll'
 import { actions } from '../'
 import { connect } from 'react-redux'
 import style from './index.module.css'
@@ -19,16 +20,18 @@ class ContactsPanel extends React.Component {
     } = this.props
     return (
       <div className={style.component}>
-        <RoomsList
-          rooms={rooms}
-          onRemove={onRemove}
-          onSelect={onSelect}
-        />
-        <PeopleList
-          people={people}
-          onRemove={onRemove}
-          onSelect={onSelect}
-        />
+        <CustomScroll flex="1">
+          <RoomsList
+            rooms={rooms}
+            onRemove={onRemove}
+            onSelect={onSelect}
+          />
+          <PeopleList
+            people={people}
+            onRemove={onRemove}
+            onSelect={onSelect}
+          />
+        </CustomScroll>
       </div>
     )
   }

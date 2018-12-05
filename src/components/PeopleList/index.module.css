@@ -1,7 +1,6 @@
 .component {
   padding-bottom: 2rem;
   margin: 0;
-  overflow: none;
   -webkit-overflow-scrolling: touch;
 }
 

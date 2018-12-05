@@ -20,3 +20,10 @@ export const getChat = id => dispatch => {
       })
     })
 }
+
+export const sendMessage = message => dispatch => {
+  dispatch({
+    type: 'send-message',
+    message
+  })
+}

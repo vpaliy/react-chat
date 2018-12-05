@@ -1,11 +1,17 @@
 import {
   fetchContacts,
   deleteUser,
-  deleteRoom
+  deleteRoom,
+  createRoom
 } from './roomActions'
 
+import {
+  fetchChat,
+  getChat,
+  sendMessage
+} from './chatActions'
+
 import { fetchUser } from './userActions'
-import { fetchChat, getChat } from './chatActions'
 
 export {
   fetchContacts,
@@ -13,5 +19,7 @@ export {
   deleteRoom,
   fetchChat,
   getChat,
-  fetchUser
+  fetchUser,
+  sendMessage,
+  createRoom
 }
