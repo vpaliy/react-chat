@@ -1,5 +1,4 @@
 from sqlalchemy.orm import relationship
-from .compat import basestring
 from app import db
 
 Column = db.Column
@@ -14,7 +13,7 @@ class SurrogatePK(object):
   @classmethod
   def get_by_id(cls, record_id):
     if any((
-      isinstance(record_id, basestring) and record_id.isdigit(),
+      isinstance(record_id, str) and record_id.isdigit(),
       isinstance(record_id, (int, float))),
     ):
-    return cls.query.get(int(record_id))
+      return cls.query.get(int(record_id))

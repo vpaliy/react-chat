@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields, pre_load, post_dump
+from marshmallow import Schema, fields, post_dump
 
 
 class UserSchema(Schema):
@@ -7,7 +7,7 @@ class UserSchema(Schema):
   bio = fields.Str()
   image = fields.Url()
   token = fields.Str(dump_only=True)
-  password = fields.Str(attribute='_password', load_only=True)
+  password = fields.Str(load_only=True)
   createdAt = fields.DateTime(attribute='created_at', dump_only=True)
   updatedAt = fields.DateTime(attribute='updated_at')
   seenAt = fields.DateTime(attribute='seen_at', dump_only=True)

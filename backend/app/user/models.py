@@ -1,6 +1,7 @@
 from app.database import Model, Column, SurrogatePK, db
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
+import datetime as dt
 
 USER_ONLINE_TIMEOUT = 20
 
@@ -14,7 +15,11 @@ class User(SurrogatePK, Model):
   image = Column(db.String(120), nullable=True)
   created_at = Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
   updated_at = Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
-  seen_at = Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+  seen_at = Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
+
+  def __init__(self, username, email, password=None, **kwargs):
+    Model.__init__(self, username=username, email=email, **kwargs)
+    self.password = password
 
   @property
   def password(self):
@@ -28,7 +33,8 @@ class User(SurrogatePK, Model):
 
   @password.setter
   def password(self, password):
-    self._password = generate_password_hash(password)
+    if password is not None:
+      self._password = generate_password_hash(password)
 
   def check_password(self, password):
     return check_password_hash(self._password, password)

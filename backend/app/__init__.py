@@ -23,5 +23,8 @@ def create_app(config):
 
   from app.main import main
   app.register_blueprint(main)
-  
+
+  from app.user import users
+  app.register_blueprint(users)
+
   return app

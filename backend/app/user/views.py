@@ -9,7 +9,13 @@ from flask_apispec import use_kwargs, marshal_with
 @use_kwargs(schema)
 @marshal_with(schema)
 def register(username, password, email, **kwargs):
-  pass
+  user = User(
+    email=email,
+    username=username,
+    password=password,
+    **kwargs
+  )
+  return user
 
 
 @users.route('/api/users/login', methods=('POST',))
