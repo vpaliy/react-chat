@@ -10,7 +10,10 @@ login = LoginManager()
 mail = Mail()
 
 def create_app(config):
-  app =  Flask(__name__)
+  app =  Flask(
+    __name__,
+    template_folder='../../frontend/public'
+  )
   app.config.from_object(config)
 
   db.init_app(app)
@@ -18,4 +21,7 @@ def create_app(config):
   login.init_app(app)
   mail.init_app(app)
 
+  from app.main import main
+  app.register_blueprint(main)
+  
   return app

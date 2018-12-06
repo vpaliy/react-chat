@@ -4,8 +4,19 @@ from collections import namedtuple
 from dotenv import load_dotenv
 
 basedir = os.path.abspath(os.path.dirname(__name__))
-
 load_dotenv(os.path.join(basedir, '.env'), verbose=True)
+
+OAuthConfig = namedtuple('OAuthConfig', 'client_id, secret_id')
+
+OAUTH_FACEBOOK_CONFIG = OAuthConfig(
+  client_id = os.getenv('facebook-client-id'),
+  secret_id = os.getenv('facebook-secret-id')
+)
+
+OAUTH_GOOGLE_CONFIG = OAuthConfig(
+  client_id = os.getenv('google-client-id'),
+  secret_id = os.getenv('google-secret-id')
+)
 
 class Config(object):
   SECRET_KEY = os.getenv('secret-key')
@@ -15,6 +26,8 @@ class Config(object):
   MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS') is not None
   MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
   MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+  OAUTH = dict(zip(('facebook', 'google'),
+    (OAUTH_FACEBOOK_CONFIG, OAUTH_GOOGLE_CONFIG)))
 
 
 class Production(Config):
