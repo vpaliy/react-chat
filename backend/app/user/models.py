@@ -1,6 +1,7 @@
 from app.database import Model, Column, SurrogatePK, db
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
+from collections import namedtuple
 import datetime as dt
 
 USER_ONLINE_TIMEOUT = 20
@@ -41,3 +42,11 @@ class User(SurrogatePK, Model):
 
   def __repr__(self):
     return '<User {!r}>'.format(self.username)
+
+
+class TokenizedUser(object):
+  __slots__ = ('token', 'user')
+
+  def __init__(self, token, user):
+    self.token = token
+    self.user = user  

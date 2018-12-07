@@ -1,15 +1,18 @@
-from app.user.serializers import schema
 from app.user import users
 from app.database import db
-from app.user.models import User
+from app.user.models import User, TokenizedUser
 from flask_apispec import use_kwargs, marshal_with
 from app.exceptions import InvalidUsage
 from sqlalchemy.exc import IntegrityError
+from app.user.serializers import (user_schema,
+    users_schema, tokenized_user_schema)
+from flask_jwt_extended import (jwt_required,
+    jwt_optional, create_access_token, current_user)
 
 
 @users.route('/api/users/register', methods=('POST',))
-@use_kwargs(schema)
-@marshal_with(schema)
+@use_kwargs(user_schema)
+@marshal_with(tokenized_user_schema)
 def register(username, password, email, **kwargs):
   try:
     user = User.create(
@@ -21,16 +24,33 @@ def register(username, password, email, **kwargs):
   except IntegrityError:
     db.session.rollback()
     raise InvalidUsage.user_already_registered()
-  return user
+  token = create_access_token(identity=user)
+  return TokenizedUser(token, user)
 
 
 @users.route('/api/users/login', methods=('POST',))
-@use_kwargs(schema)
-@marshal_with(schema)
+@use_kwargs(user_schema)
+@marshal_with(tokenized_user_schema)
+@jwt_optional
 def login(username, password, **kwargs):
   user = User.query.filter_by(username=username).first()
   if user is None:
     user = User.query.filter_by(email=username).first()
   if user is not None and user.check_password(password):
-    return user
+    token = create_access_token(identity=user)
+    return TokenizedUser(token, user)
   raise InvalidUsage.user_not_found()
+
+
+@users.route('/api/users', methods=('GET',))
+@marshal_with(users_schema)
+@jwt_required
+def get_users():
+  return User.query.all()
+
+
+@users.route('/api/users', methods=('DELETE', ))
+@use_kwargs(user_schema)
+@jwt_required
+def delete(**kwargs):
+  pass

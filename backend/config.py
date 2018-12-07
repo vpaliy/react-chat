@@ -21,11 +21,15 @@ OAUTH_GOOGLE_CONFIG = OAuthConfig(
 class Config(object):
   SECRET_KEY = os.getenv('secret-key')
   SQLALCHEMY_TRACK_MODIFICATIONS = False
-  MAIL_SERVER = os.environ.get('MAIL_SERVER')
-  MAIL_PORT = int(os.environ.get('MAIL_PORT') or 25)
-  MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS') is not None
-  MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-  MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+  JWT_SECRET_KEY = os.environ.get('jwt-secret-key')
+  JWT_AUTH_USERNAME_KEY = 'email'
+  JWT_AUTH_HEADER_PREFIX = 'Token'
+  JWT_HEADER_TYPE = 'Token'
+  MAIL_SERVER = os.environ.get('mail-server')
+  MAIL_PORT = int(os.environ.get('mail-port') or 25)
+  MAIL_USE_TLS = os.environ.get('mail-use-tls') is not None
+  MAIL_USERNAME = os.environ.get('mail-username')
+  MAIL_PASSWORD = os.environ.get('mail-password')
   OAUTH = dict(zip(('facebook', 'google'),
     (OAUTH_FACEBOOK_CONFIG, OAUTH_GOOGLE_CONFIG)))
 
