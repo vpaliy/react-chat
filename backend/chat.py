@@ -2,6 +2,7 @@ import os
 import click
 
 from app import create_app, db
+from app.user.models import User
 from config import config
 
 configuration = config[os.getenv('flavor') or 'development']
@@ -9,7 +10,10 @@ app = create_app(configuration)
 
 @app.shell_context_processor
 def context():
-  return { 'db': db }
+  return {
+    'db': db,
+    'User': User
+    }
 
 
 @app.cli.command()

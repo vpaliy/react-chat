@@ -12,12 +12,12 @@ from sqlalchemy.exc import IntegrityError
 @marshal_with(schema)
 def register(username, password, email, **kwargs):
   try:
-    user = User(
+    user = User.create(
       email=email,
       username=username,
       password=password,
       **kwargs
-    ).save()
+    )
   except IntegrityError:
     db.session.rollback()
     raise InvalidUsage.user_already_registered()
