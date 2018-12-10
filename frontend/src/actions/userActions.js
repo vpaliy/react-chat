@@ -11,6 +11,4 @@ const fetchUser = () => dispatch => {
   )
 }
 
-export {
-  fetchUser
-}
+export {  fetchUser }

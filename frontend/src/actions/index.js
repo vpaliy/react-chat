@@ -12,6 +12,7 @@ import {
 } from './chatActions'
 
 import { fetchUser } from './userActions'
+import { login, register, forgotPassword } from './authActions'
 
 export {
   fetchContacts,
@@ -21,5 +22,8 @@ export {
   getChat,
   fetchUser,
   sendMessage,
-  createRoom
+  createRoom,
+  login,
+  register,
+  forgotPassword
 }

@@ -28,7 +28,7 @@ const user = {
    }
 }
 
-const chatPanel = (state=initialState, action) => {
+const chatPanel = (state = initialState, action) => {
   switch (action.type) {
     case 'fetch-chat-start':
       return {...state, isLoading:true }
