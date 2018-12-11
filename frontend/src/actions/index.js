@@ -11,10 +11,15 @@ import {
   sendMessage
 } from './chatActions'
 
-import { fetchUser } from './userActions'
-import { login, register, forgotPassword } from './authActions'
+import {
+  login,
+  register,
+  forgotPassword
+} from './authActions'
 
-export {
+import { fetchUser } from './userActions'
+
+export const actions = Object.assign(
   fetchContacts,
   deleteUser,
   deleteRoom,
@@ -26,4 +31,4 @@ export {
   login,
   register,
   forgotPassword
-}
+)

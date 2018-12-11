@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ErrorMessage from '../ErrorMessage'
-import LoadingButton from '../LoadingButton'
-import AuthFooter from '../AuthFooter'
-import { actions } from '../'
+import ErrorMessage from 'Messages/ErrorMessage'
+import LoadingButton from 'Buttons/LoadingButton'
+import AuthFooter from 'Footers/AuthFooter'
+import { actions } from '@actions'
 import { connect } from 'react-redux'
 import style from './index.module.css'
 

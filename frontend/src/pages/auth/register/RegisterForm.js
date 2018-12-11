@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ErrorMessage from '../ErrorMessage'
-import LoadingButton from '../LoadingButton'
-import AuthFooter from '../AuthFooter'
+import ErrorMessage from 'Messages/ErrorMessage'
+import LoadingButton from 'Buttons/LoadingButton'
+import AuthFooter from 'Footers/AuthFooter'
 import { connect } from 'react-redux'
-import { actions } from '../'
+import { actions } from '@actions'
 import style from './index.module.css'
 
 class RegisterInputContainer {

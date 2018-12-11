@@ -67,6 +67,21 @@ const resolveModule = (resolveFn, filePath) => {
 
 // config after eject: we're in ./config/
 module.exports = {
+  alias: {
+    'react-native': 'react-native-web',
+    '@actions': path.resolve('src/actions/'),
+    '@reducers': path.resolve('src/reducers/'),
+    'Headers': path.resolve('src/components/Header'),
+    'Footers': path.resolve('src/components/Footer'),
+    'Buttons': path.resolve('src/components/Button'),
+    'Inputs': path.resolve('src/components/Input'),
+    'Lists': path.resolve('src/components/List'),
+    'Messages': path.resolve('src/components/Message'),
+    'Profiles': path.resolve('src/components/Profile'),
+    'LoginForm': path.resolve('src/pages/auth/login'),
+    'RegisterForm': path.resolve('src/pages/auth/register'),
+    'ForgotPasswordForm': path.resolve('src/pages/auth/forgotPassword')
+  },
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
   appBuild: resolveApp('build'),
