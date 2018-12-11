@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './index.module.css'
-import Message from '../Message/'
+import Message from '../ChatMessage/'
 
 const emptyList = (
   <div className={style.empty}>

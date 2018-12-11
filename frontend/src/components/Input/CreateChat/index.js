@@ -3,7 +3,7 @@ import { actions } from '../'
 import { connect } from 'react-redux'
 import style from './index.module.css'
 
-class CreateChatFooter extends React.Component {
+class CreateChat extends React.Component {
   messageInput = React.createRef()
 
   onCreate = event => {
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps
-)(CreateChatFooter)
+)(CreateChat)

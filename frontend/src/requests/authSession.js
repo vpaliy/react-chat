@@ -1,7 +1,6 @@
 const TOKEN_KEY = 'authToken'
 
 class SessionManager {
-
   static authenticateUser (token) {
     if (window.localStorage) {
       window.localStorage.setItem(TOKEN_KEY, token)
