@@ -1,6 +1,6 @@
-import React from 'react'
-import Lottie from 'react-lottie'
-import styled from 'styled-components'
+import React from "react";
+import Lottie from "react-lottie";
+import styled from "styled-components";
 
 export const Form = styled.form`
   display: flex;
@@ -10,9 +10,9 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   > *:not(:first-child) {
-      margin-top: 12px;
-  };
-`
+    margin-top: 12px;
+  }
+`;
 
 export const Input = styled.input`
   background-color: #f6f6f6;
@@ -33,7 +33,7 @@ export const Input = styled.input`
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   box-sizing: content-box;
-`
+`;
 
 export const Header = styled.h2`
   text-align: center;
@@ -46,7 +46,7 @@ export const Header = styled.h2`
   margin: 40px 8px 10px 8px;
   color: gray;
   box-sizing: content-box;
-`
+`;
 
 export const Page = styled.div`
   -webkit-border-radius: 10px 10px 10px 10px;
@@ -59,9 +59,9 @@ export const Page = styled.div`
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  top: 20%;
+  top: 10%;
   box-sizing: content-box;
-`
+`;
 
 const AuthLogoWrapper = styled.a`
   color: #92badd;
@@ -72,35 +72,27 @@ const AuthLogoWrapper = styled.a`
   margin-top: 0.7rem;
   margin-bottom: 0rem;
   :hover {
-    color: #0C92DF;
+    color: #0c92df;
   }
-`
+`;
 
 export const AuthLogo = ({ type, onClicked }) => (
   <AuthLogoWrapper>
-    <i class={`fa fa-${type} fa-2x`}
-       onClick={() => onClicked(type)}>
-    </i>
+    <i class={`fa fa-${type} fa-2x`} onClick={() => onClicked(type)} />
   </AuthLogoWrapper>
-)
+);
 
 export class Logo extends React.Component {
   defaultOptions = {
     loop: false,
     autoplay: true,
-    animationData: require('./animation.json'),
+    animationData: require("./animation.json"),
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
+      preserveAspectRatio: "xMidYMid slice"
     }
-  }
+  };
 
   render() {
-    return (
-      <Lottie
-        options={this.defaultOptions}
-        height={200}
-        width={200}
-      />
-    )
+    return <Lottie options={this.defaultOptions} height={200} width={200} />;
   }
 }

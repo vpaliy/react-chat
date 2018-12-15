@@ -49,8 +49,19 @@ def get_users():
   return User.query.all()
 
 
+@users.route('/api/users/recover', methods=('POST',))
+@use_kwargs(user_schema)
+def recover_password(username):
+  user = User.query.filter_by(username=username).first()
+  if user is None:
+    user = User.query.filter_by(email=username).first()
+  if user is None:
+    raise InvalidUsage.user_not_found()
+  raise NotImplemented
+
+
 @users.route('/api/users', methods=('DELETE', ))
 @use_kwargs(user_schema)
 @jwt_required
 def delete(**kwargs):
-  pass
+  raise NotImplemented

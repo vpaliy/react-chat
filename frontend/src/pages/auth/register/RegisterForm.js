@@ -32,25 +32,28 @@ class RegisterForm extends React.Component {
   onSubmit = event => {
     event.preventDefault();
 
+    const { onSubmit } = this.props;
     const { email, username, password } = this.state;
 
-    this.props.onSubmit(email, username, password);
+    onSubmit(email, username, password);
   };
 
   onFormChange = event => {
     const target = event.target;
     const field = target.name;
     const value = target.value;
-    const { email, username, password, repeatedPassword } = this.state;
 
     this.setState({
       [field]: value,
-      isButtonEnabled: isEmail(email)
+      isButtonEnabled:
+        Object.keys(this.state)
+          .filter(key => !["isButtonEnabled", field].includes(key))
+          .map(key => this.state[key])
+          .every(v => v) && value
     });
   };
 
   render() {
-    const { isLoading, error } = this.props;
     return (
       <Page>
         <Logo />
@@ -86,11 +89,11 @@ class RegisterForm extends React.Component {
           />
           <LoadingButton
             title="Sign Up"
-            isLoading={isLoading}
+            isLoading={this.props.isLoading}
             isEnabled={this.state.isButtonEnabled}
           />
         </Form>
-        <ErrorMessage error={error} />
+        <ErrorMessage error={this.props.error} />
         <AuthFooter path="/login" text="Already have an account?" />
       </Page>
     );
@@ -99,7 +102,7 @@ class RegisterForm extends React.Component {
 
 const mapStateToProps = state => ({
   isLoading: state.auth.isLoading,
-  error: state.auth.errors
+  error: state.auth.error
 });
 
 const mapDispatchToProps = dispatch => ({

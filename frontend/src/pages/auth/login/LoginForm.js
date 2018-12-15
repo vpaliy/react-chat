@@ -38,10 +38,14 @@ class LoginForm extends React.Component {
     const target = event.target;
     const field = target.name;
     const value = target.value;
-    const { username, password } = this.state;
 
     this.setState({
-      [field]: value
+      [field]: value,
+      isButtonEnabled:
+        Object.keys(this.state)
+          .filter(key => !["isButtonEnabled", field].includes(key))
+          .map(key => this.state[key])
+          .every(v => v) && value
     });
   };
 

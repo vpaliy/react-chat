@@ -1,13 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { actions } from "@actions";
 import ErrorMessage from "Messages/ErrorMessage";
 import LoadingButton from "Buttons/LoadingButton";
 import AuthFooter from "Footers/AuthFooter";
+import { actions } from "@actions";
 import { Header, Form, Input, Page, Logo } from "../auth";
 
 class ForgotPasswordForm extends React.Component {
+  state = {
+    isButtonEnabled: false,
+    username: null
+  };
+
   static propTypes = {
     errors: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired,
@@ -20,27 +25,22 @@ class ForgotPasswordForm extends React.Component {
     onSubmit: () => {}
   };
 
-  state = {
-    isButtonEnabled: false
-  };
-
-  usernameRef = React.createRef();
-
   onSubmit = event => {
     event.preventDefault();
+    const { username } = this.state;
+    const { onSubmit } = this.props;
 
-    const username = this.usernameRef.current;
-    this.props.onSubmit(username.value);
+    onSubmit(username);
   };
 
   onEmailChange = event => {
     this.setState({
-      isButtonEnabled: event.target.value
+      isButtonEnabled: event.target.value,
+      username: event.target.value
     });
   };
 
   render() {
-    const { isLoading, error } = this.props;
     return (
       <Page>
         <Logo />
@@ -48,17 +48,17 @@ class ForgotPasswordForm extends React.Component {
         <Form onSubmit={this.onSubmit}>
           <Input
             type="text"
-            ref={this.usernameRef}
+            value={this.state.username}
             onChange={this.onEmailChange}
             placeholder="Email or username"
           />
           <LoadingButton
             title="Submit"
-            isLoading={isLoading}
+            isLoading={this.props.isLoading}
             isEnabled={this.state.isButtonEnabled}
           />
         </Form>
-        <ErrorMessage error={error} />
+        <ErrorMessage error={this.props.error} />
         <AuthFooter path="/login" text="Nope, remember it" />
       </Page>
     );
