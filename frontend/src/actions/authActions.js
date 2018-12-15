@@ -9,7 +9,10 @@ const login = (username, password) => dispatch => {
         token: response.token
       })
     }).catch(error => {
-      dispatch({ type: 'login-failure' })
+      dispatch({
+        type: 'login-failure',
+        error: 'Login has failed'
+      })
     })
 }
 
@@ -22,7 +25,10 @@ const register = (email, username, password) => dispatch => {
         token: response.token
       })
     }).catch(error => {
-      dispatch({ type: 'register-failure' })
+      dispatch({
+        type: 'register-failure',
+        error: 'Registration has failed'
+       })
     })
 }
 

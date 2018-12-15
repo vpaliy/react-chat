@@ -63,6 +63,27 @@ export const Page = styled.div`
   box-sizing: content-box;
 `
 
+const AuthLogoWrapper = styled.a`
+  color: #92badd;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem;
+  padding-bottom: 0rem;
+  margin-top: 0.7rem;
+  margin-bottom: 0rem;
+  :hover {
+    color: #0C92DF;
+  }
+`
+
+export const AuthLogo = ({ type, onClicked }) => (
+  <AuthLogoWrapper>
+    <i class={`fa fa-${type} fa-2x`}
+       onClick={() => onClicked(type)}>
+    </i>
+  </AuthLogoWrapper>
+)
+
 export class Logo extends React.Component {
   defaultOptions = {
     loop: false,

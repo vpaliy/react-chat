@@ -1,7 +1,7 @@
 const initialState = {
   token: null,
   isLoading: false,
-  errors: null
+  error: null
 }
 
 const authReducer = (state = initialState, action) => {
@@ -23,7 +23,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        errors: action.errors
+        error: action.error
       }
     default:
       return state

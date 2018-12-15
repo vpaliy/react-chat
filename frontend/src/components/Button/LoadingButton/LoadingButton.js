@@ -1,6 +1,6 @@
-import React from 'react';
-import { spin } from 'Common'
-import styled from 'styled-components'
+import React from "react";
+import { spin } from "Common";
+import styled from "styled-components";
 
 const Button = styled.input`
   background-color: #56baed;
@@ -22,8 +22,8 @@ const Button = styled.input`
     background: #cccccc;
     -webkit-box-shadow: none;
     box-shadow: none;
-}
-`
+  }
+`;
 
 const Loader = styled.div`
   border: 4px solid #f3f3f3;
@@ -32,17 +32,15 @@ const Loader = styled.div`
   width: 48px;
   height: 48px;
   animation: ${spin} 2s linear infinite;
-`
+`;
+
 
 const LoadingButton = ({ title, isLoading, isEnabled }) => {
-  return isLoading ? <Loader />
-    : (
-      <Button
-        type="submit"
-        value={title}
-        disabled={!isEnabled}
-      />
-    );
-}
+  return isLoading ? (
+    <Loader />
+  ) : (
+    <Button type="submit" value={title} disabled={!isEnabled} />
+  );
+};
 
-export default LoadingButton
+export default LoadingButton;

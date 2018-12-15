@@ -19,7 +19,7 @@ import {
 
 import { fetchUser } from './userActions'
 
-export const actions = Object.assign(
+export const actions = Object.assign({
   fetchContacts,
   deleteUser,
   deleteRoom,
@@ -31,4 +31,4 @@ export const actions = Object.assign(
   login,
   register,
   forgotPassword
-)
+})

@@ -71,6 +71,7 @@ module.exports = {
     'react-native': 'react-native-web',
     '@actions': path.resolve('src/actions/'),
     '@reducers': path.resolve('src/reducers/'),
+    'Utils': path.resolve('src/utils/'),
     'Headers': path.resolve('src/components/Header'),
     'Footers': path.resolve('src/components/Footer'),
     'Buttons': path.resolve('src/components/Button'),
