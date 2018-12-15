@@ -1,27 +1,36 @@
 import React from 'react'
-import style from './index.module.css'
-import Message from '../ChatMessage/'
+import styled from 'styled-components'
+import Message from 'Message/ChatMessage'
 
-const emptyList = (
-  <div className={style.empty}>
-    <span role="img" aria-label="post">
-      📝
-    </span>
-    <h2>No Messages Yet</h2>
-    <p>Be the first to post in this room or invite someone to join the room</p>
-  </div>
-)
+const List = styled.ul`
+  flex: 1 1 100%;
+  margin: 0;
+  padding: 1rem;
+  display: flex;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+`
+
+const Wrapper = styled.div`
+  display: flex;
+  margin-top: auto;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  flex-direction: column-reverse;
+`
 
 const MessageList = ({ messages = {}, user = {} }) => (
-  <ul id="messages" className={style.component}>
+  <List>
     {messages.length > 0 ? (
-      <wrapper->
+      <Wrapper>
         {messages
           .reverse()
           .map(message => Message({ user })(message))}
-      </wrapper->
+      </Wrapper>
     ) : (
-      emptyList
+      null
     )}
   </ul>
 )

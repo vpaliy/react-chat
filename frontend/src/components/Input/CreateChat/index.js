@@ -1,7 +1,29 @@
 import React from 'react'
 import { actions } from '@actions'
 import { connect } from 'react-redux'
-import style from './index.module.css'
+import styled from 'styled-components'
+import { SmallIcon } from 'Common'
+
+const Form = styled.form`
+  flex: none;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #e0e0e0;
+  height: 3.6rem;
+  display: flex;
+  width: 100%;
+
+  > * {
+    margin-right: 0.62rem;
+  }
+`
+
+const Button = styled.button`
+  position: relative;
+  border: 0;
+  background: #fff;
+  padding: 0;
+`
 
 class CreateChat extends React.Component {
   messageInput = React.createRef()
@@ -17,20 +39,17 @@ class CreateChat extends React.Component {
 
   render() {
     return (
-      <form
-        className={style.component}
-        onSubmit={this.onCreate} >
+      <Form onSubmit={this.onCreate} >
         <input
           ref={this.messageInput}
           type="text"
           placeholder="Create Room" />
-        <button
-          type="submit">
-          <svg>
+        <Button>
+          <SmallIcon>
             <use xlinkHref="index.svg#add" />
-          </svg>
-        </button>
-      </form>
+          </SmallIcon>
+        </Button>
+      </Form>
     )
   }
 }

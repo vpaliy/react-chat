@@ -1,33 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { actions } from '@actions';
+import { connect } from 'react-redux'
 import ErrorMessage from 'Messages/ErrorMessage'
 import LoadingButton from 'Buttons/LoadingButton'
 import AuthFooter from 'Footers/AuthFooter'
-import Lottie from 'react-lottie'
-import style from './index.module.css'
-import { actions } from '@actions';
-import { connect } from 'react-redux'
+import { Header, Form, Input, Page, Logo } from '../auth'
 
-class Logo extends React.Component {
-  defaultOptions = {
-    loop: false,
-    autoplay: true,
-    animationData: require('./light_bulb_.json'),
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
-  }
-
-  render() {
-    return (
-      <Lottie
-        options={this.defaultOptions}
-        height={200}
-        width={200}
-      />
-    )
-  }
-}
 
 class LoginForm extends React.Component {
   static propTypes = {
@@ -68,41 +48,34 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const {
-      isLoading,
-      error
-    } = this.props;
+    const { isLoading, error } = this.props;
     return (
-      <div className={style.component}>
-        <div className={style.form}>
-          <Logo />
-          <h2>Sign In</h2>
-          <form onSubmit={this.onSubmit}>
-            <input-wrapper>
-              <input
-                type="text"
-                ref={this.usernameRef}
-                onChange={this.onEmailChange}
-                placeholder="Email or username"
-              />
-              <input
-                type="password"
-                ref={this.passwordRef}
-                placeholder="Password"
-              />
-              <LoadingButton
-                title="Log In"
-                isLoading={isLoading}
-                isEnabled={this.state.isButtonEnabled} />
-            </input-wrapper>
-          </form>
-          <ErrorMessage error={error} />
-          <AuthFooter
-            path="/forgot"
-            text="Forgot Password?"
-           />
-        </div>
-      </div>
+      <Page>
+        <Logo />
+        <Header>Sign In</Header>
+        <Form onSubmit={this.onSubmit}>
+          <Input
+            type="text"
+            ref={this.usernameRef}
+            onChange={this.onEmailChange}
+            placeholder="Email or username"
+          />
+          <Input
+            type="password"
+            ref={this.passwordRef}
+            placeholder="Password"
+          />
+          <LoadingButton
+            title="Log In"
+            isLoading={isLoading}
+            isEnabled={this.state.isButtonEnabled} />
+        </Form>
+        <ErrorMessage error={error} />
+        <AuthFooter
+          path="/forgot"
+          text="Forgot Password?"
+        />
+     </Page>
     );
   }
 }

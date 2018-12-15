@@ -1,11 +1,25 @@
 import React from 'react';
-import style from './index.module.css'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0px;
+`
+
+const Text = styled.p`
+  color: red;
+  font-size: 17px;
+  margin-bottom: 0px;
+`
 
 const ErrorMessage = ({ error }) => (
   error ? (
-    <div className={style.component}>
-      <p>{error}</p>
-    </div>
+    <Wrapper>
+      <Text>{error}</Text>
+    </Wrapper>
   ) : null
 )
 

@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import ErrorMessage from 'Messages/ErrorMessage'
 import LoadingButton from 'Buttons/LoadingButton'
 import AuthFooter from 'Footers/AuthFooter'
+import { Header, Form, Input, Page, Logo } from '../auth'
 import { connect } from 'react-redux'
 import { actions } from '@actions'
-import style from './index.module.css'
+
 
 class RegisterInputContainer {
   emailRef = React.createRef()
@@ -90,49 +91,39 @@ class RegisterForm extends React.Component {
       error
     } = this.props;
     return (
-      <div className={style.component}>
-        <div className={style.form}>
-          <h2>Sign Up</h2>
-          <form onSubmit={this.onSubmit}>
-            <input-wrapper>
-              <input
-                type="text"
-                ref={this.inputs.usernameRef}
-                onChange={this.onFormChange}
-                placeholder="Username"
-              />
-              <input
-                type="email"
-                ref={this.inputs.emailRef}
-                onChange={this.onFormChange}
-                placeholder="Email"
-              />
-              <input
-                type="password"
-                ref={this.inputs.passwordRef}
-                onChange={this.onFormChange}
-                placeholder="Password"
-              />
-              <input
-                type="password"
-                ref={this.inputs.repeatedPasswordRef}
-                onChange={this.onFormChange}
-                placeholder="Repeat Password"
-              />
-              <LoadingButton
-                title="Sign Up"
-                isLoading={isLoading}
-                isEnabled={this.state.isButtonEnabled}
-              />
-            </input-wrapper>
-          </form>
-          <ErrorMessage error={error} />
-          <AuthFooter
-            path="/login"
-            text="Already have an account?"
-           />
-        </div>
-      </div>
+      <Page>
+        <Logo />
+        <Header>Sign Up</Header>
+        <Form onSubmit={this.onSubmit}>
+          <Input
+            type="text"
+            ref={this.usernameRef}
+            onChange={this.onFormChange}
+            placeholder="Email or username"
+          />
+          <Input
+            type="password"
+            ref={this.passwordRef}
+            onChange={this.onFormChange}
+            placeholder="Password"
+          />
+          <Input
+            type="password"
+            ref={this.repeatedPasswordRef}
+            onChange={this.onFormChange}
+            placeholder="Repeat Password"
+          />
+          <LoadingButton
+            title="Sign Up"
+            isLoading={isLoading}
+            isEnabled={this.state.isButtonEnabled} />
+        </Form>
+        <ErrorMessage error={error} />
+        <AuthFooter
+          path="/login"
+          text="Already have an account?"
+        />
+     </Page>
     )
   }
 }
