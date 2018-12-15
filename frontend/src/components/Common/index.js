@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from "styled-components";
 
 export const spin = keyframes`
   from {
@@ -8,10 +8,10 @@ export const spin = keyframes`
   to {
     transform: rotate(360deg);
   }
-`
+`;
 
 export const SmallIcon = styled.svg`
   width: 2rem;
   height: 2rem;
   fill: #006eff;
-`
+`;

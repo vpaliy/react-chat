@@ -1,29 +1,29 @@
-const TOKEN_KEY = 'authToken'
+const TOKEN_KEY = "authToken";
 
 class SessionManager {
-  static authenticateUser (token) {
+  static authenticateUser(token) {
     if (window.localStorage) {
-      window.localStorage.setItem(TOKEN_KEY, token)
+      window.localStorage.setItem(TOKEN_KEY, token);
     }
   }
 
-  static isUserAuthenticated () {
+  static isUserAuthenticated() {
     if (window.localStorage) {
-      return window.localStorage.getItem(TOKEN_KEY) !== null
+      return window.localStorage.getItem(TOKEN_KEY) !== null;
     }
   }
 
-  static deauthenticateUser () {
+  static deauthenticateUser() {
     if (window.localStorage) {
-      window.localStorage.removeItem(TOKEN_KEY)
+      window.localStorage.removeItem(TOKEN_KEY);
     }
   }
 
-  static getToken () {
+  static getToken() {
     if (window.localStorage) {
-      return window.localStorage.getItem(TOKEN_KEY)
+      return window.localStorage.getItem(TOKEN_KEY);
     }
   }
 }
 
-export default SessionManager
+export default SessionManager;

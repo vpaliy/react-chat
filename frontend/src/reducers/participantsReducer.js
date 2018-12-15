@@ -1,6 +1,5 @@
+const participants = (state = {}, actions) => {
+  return state;
+};
 
-const participants = (state={}, actions) => {
-  return state
-}
-
-export default participants
+export default participants;

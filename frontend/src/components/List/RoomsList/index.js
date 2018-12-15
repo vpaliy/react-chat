@@ -1,12 +1,12 @@
-import React from 'react'
-import Room from 'Profile/Room'
-import styled from 'styled-components'
+import React from "react";
+import Room from "Profile/Room";
+import styled from "styled-components";
 
 const List = styled.div`
   padding-bottom: 2rem;
   margin: 0;
   -webkit-overflow-scrolling: touch;
-`
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   margin-right: 1rem;
   margin-bottom: 0.5rem;
   flex-direction: column-reverse;
-`
+`;
 
 const Header = styled.h3`
   font-size: 1.2rem;
@@ -26,19 +26,14 @@ const Header = styled.h3`
   font-weight: bold;
   text-align: left;
   color: rgba(0, 0, 0, 0.58);
-`
+`;
 
-const RoomList = ({ rooms, onRemove, onSelect }) => (
+const RoomList = ({ rooms, onRemove, onSelect }) =>
   rooms.length > 0 ? (
     <List>
       <Header>Rooms</Header>
-      <Wrapper>
-        {rooms.map(
-          room => Room({ room, onRemove, onSelect })
-        )}
-      </Wrapper>
+      <Wrapper>{rooms.map(room => Room({ room, onRemove, onSelect }))}</Wrapper>
     </List>
-  ) : null
-)
+  ) : null;
 
-export default RoomList
+export default RoomList;

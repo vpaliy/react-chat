@@ -1,8 +1,8 @@
-import React from 'react'
-import { actions } from '@actions'
-import { connect } from 'react-redux'
-import styled from 'styled-components'
-import { SmallIcon } from 'Common'
+import React from "react";
+import { actions } from "@actions";
+import { connect } from "react-redux";
+import styled from "styled-components";
+import { SmallIcon } from "Common";
 
 const Form = styled.form`
   flex: none;
@@ -16,54 +16,58 @@ const Form = styled.form`
   > * {
     margin-right: 0.62rem;
   }
-`
+`;
 
 const Button = styled.button`
   position: relative;
   border: 0;
   background: #fff;
   padding: 0;
-`
+`;
 
 class CreateMessageForm extends React.Component {
-  messageInput = React.createRef()
+  state = { message: null };
 
   onSend = event => {
-    event.preventDefault()
-    const input = this.messageInput.current
-    const { onSubmit } = this.props
+    event.preventDefault();
+    const { message } = this.state;
+    const { onSubmit } = this.props;
 
-    if (!input.value) {
-      return;
-    }
+    onSubmit(message);
 
-    onSubmit(input.value)
-    input.value = null
-  }
+    this.setState({ message: null });
+  };
+
+  onType = event => {
+    this.setState({
+      message: event.target.value
+    });
+  };
 
   render() {
     return (
-      <Form onSubmit={this.onSend} >
+      <Form onSubmit={this.onSend}>
         <input
-          ref={this.messageInput}
           type="text"
-          placeholder="Message..." />
+          onChange={this.onType}
+          value={this.state.message}
+          placeholder="Message..."
+        />
         <Button>
           <SmallIcon>
             <use xlinkHref="index.svg#send" />
           </SmallIcon>
         </Button>
       </Form>
-    )
+    );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: message =>
-    dispatch(actions.sendMessage(message))
-})
+  onSubmit: message => dispatch(actions.sendMessage(message))
+});
 
 export default connect(
   null,
   mapDispatchToProps
-)(CreateMessageForm)
+)(CreateMessageForm);

@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import Message from 'Message/ChatMessage'
+import React from "react";
+import styled from "styled-components";
+import Message from "Message/ChatMessage";
 
 const List = styled.ul`
   flex: 1 1 100%;
@@ -10,7 +10,7 @@ const List = styled.ul`
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   width: 100%;
-`
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,20 +19,16 @@ const Wrapper = styled.div`
   margin-right: 1rem;
   margin-bottom: 0.5rem;
   flex-direction: column-reverse;
-`
+`;
 
 const MessageList = ({ messages = {}, user = {} }) => (
   <List>
     {messages.length > 0 ? (
       <Wrapper>
-        {messages
-          .reverse()
-          .map(message => Message({ user })(message))}
+        {messages.reverse().map(message => Message({ user })(message))}
       </Wrapper>
-    ) : (
-      null
-    )}
-  </ul>
-)
+    ) : null}
+  </List>
+);
 
-export default MessageList
+export default MessageList;

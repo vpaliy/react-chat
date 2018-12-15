@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
@@ -7,20 +7,19 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding-bottom: 0px;
-`
+`;
 
 const Text = styled.p`
   color: red;
   font-size: 17px;
   margin-bottom: 0px;
-`
+`;
 
-const ErrorMessage = ({ error }) => (
+const ErrorMessage = ({ error }) =>
   error ? (
     <Wrapper>
       <Text>{error}</Text>
     </Wrapper>
-  ) : null
-)
+  ) : null;
 
 export default ErrorMessage;

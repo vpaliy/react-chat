@@ -1,45 +1,48 @@
-import { Auth } from '../requests'
+import { Auth } from "../requests";
 
 const login = (username, password) => dispatch => {
-  dispatch({ type: 'login-start' })
+  dispatch({ type: "login-start" });
   Auth.login(username, password)
     .then(response => {
       dispatch({
-        type: 'login-success',
+        type: "login-success",
         token: response.token
-      })
-    }).catch(error => {
-      dispatch({
-        type: 'login-failure',
-        error: 'Login has failed'
-      })
+      });
     })
-}
+    .catch(error => {
+      dispatch({
+        type: "login-failure",
+        error: "Login has failed"
+      });
+    });
+};
 
 const register = (email, username, password) => dispatch => {
-  dispatch({ type: 'register-start' })
+  dispatch({ type: "register-start" });
   Auth.register(email, username, password)
     .then(response => {
       dispatch({
-        type: 'register-success',
+        type: "register-success",
         token: response.token
-      })
-    }).catch(error => {
-      dispatch({
-        type: 'register-failure',
-        error: 'Registration has failed'
-       })
+      });
     })
-}
+    .catch(error => {
+      dispatch({
+        type: "register-failure",
+        error: "Registration has failed"
+      });
+    });
+};
 
-const forgotPassword = (email) => dispatch => {
-  dispatch({ type: 'forgot-password-start'})
+const forgotPassword = email => dispatch => {
+  dispatch({ type: "forgot-password-start" });
   Auth.forgotPassword(email)
     .then(response => {
-      dispatch({})
-    }).catch(error => {
-      dispatch({ type: 'forgot-password-failure'})
+      dispatch({});
     })
-}
+    .catch(error => {
+      dispatch({ type: "forgot-password-failure" });
+    });
+};
 
-export { login, register, forgotPassword }
+export { login, register, forgotPassword };

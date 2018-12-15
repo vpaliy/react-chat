@@ -3,21 +3,13 @@ import {
   deleteUser,
   deleteRoom,
   createRoom
-} from './roomActions'
+} from "./roomActions";
 
-import {
-  fetchChat,
-  getChat,
-  sendMessage
-} from './chatActions'
+import { fetchChat, getChat, sendMessage } from "./chatActions";
 
-import {
-  login,
-  register,
-  forgotPassword
-} from './authActions'
+import { login, register, forgotPassword } from "./authActions";
 
-import { fetchUser } from './userActions'
+import { fetchUser } from "./userActions";
 
 export const actions = Object.assign({
   fetchContacts,
@@ -31,4 +23,4 @@ export const actions = Object.assign({
   login,
   register,
   forgotPassword
-})
+});

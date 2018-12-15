@@ -1,17 +1,17 @@
 .component {
-    padding: 0.8rem;
-    display: flex;
-    align-items: center;
-    flex: none;
-    height: 4.8rem;
-    border-bottom: 1px solid #e0e0e0;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  flex: none;
+  height: 4.8rem;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 img {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.3rem;
-    background: #e0e0e0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.3rem;
+  background: #e0e0e0;
 }
 
 .component h3 {

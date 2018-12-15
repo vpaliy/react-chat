@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   flex: none;
@@ -21,29 +21,26 @@ const Wrapper = styled.div`
     background: rgba(0, 0, 0, 0.015);
     color: rgba(0, 0, 0, 0.62);
   }
-`
+`;
 
 const Image = styled.img`
   width: 2rem;
   height: 2rem;
   border-radius: 0.3rem;
   background: #e0e0e0;
-`
+`;
 
 const Title = styled.span`
   display: block;
   white-space: nowrap;
   margin-left: 1rem;
-`
+`;
 
 const ContactUser = ({ user, onRemove, onSelect }) => (
-  <Wrapper
-    onClick={() => onSelect(room.id)}
-    disabled={user.active}
-    >
-    <Image src={user.avatarUrl}/>
+  <Wrapper onClick={() => onSelect(room.id)} disabled={user.active}>
+    <Image src={user.avatarUrl} />
     <Title>{user.username}</Title>
   </Wrapper>
-)
+);
 
-export default ContactUser
+export default ContactUser;

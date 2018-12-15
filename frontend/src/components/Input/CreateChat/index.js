@@ -1,8 +1,8 @@
-import React from 'react'
-import { actions } from '@actions'
-import { connect } from 'react-redux'
-import styled from 'styled-components'
-import { SmallIcon } from 'Common'
+import React from "react";
+import { connect } from "react-redux";
+import styled from "styled-components";
+import { actions } from "@actions";
+import { SmallIcon } from "Common";
 
 const Form = styled.form`
   flex: none;
@@ -16,50 +16,58 @@ const Form = styled.form`
   > * {
     margin-right: 0.62rem;
   }
-`
+`;
 
 const Button = styled.button`
   position: relative;
   border: 0;
   background: #fff;
   padding: 0;
-`
+`;
 
 class CreateChat extends React.Component {
-  messageInput = React.createRef()
+  state = { roomName: null };
 
   onCreate = event => {
-    event.preventDefault()
+    event.preventDefault();
+    const { roomName } = this.state;
+    const { createRoom } = this.props;
 
-    const input = this.messageInput.current
-    const { createRoom } = this.props
+    createRoom(roomName);
 
-    createRoom(input.value)
-  }
+    this.setState({ roomName: null });
+  };
+
+  onType = event => {
+    this.setState({
+      roomName: event.target.value
+    });
+  };
 
   render() {
     return (
-      <Form onSubmit={this.onCreate} >
+      <Form onSubmit={this.onCreate}>
         <input
-          ref={this.messageInput}
           type="text"
-          placeholder="Create Room" />
+          onChange={this.onType}
+          value={this.state.roomName}
+          placeholder="Create Room..."
+        />
         <Button>
           <SmallIcon>
             <use xlinkHref="index.svg#add" />
           </SmallIcon>
         </Button>
       </Form>
-    )
+    );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  createRoom: roomName =>
-    dispatch(actions.createRoom(roomName))
-})
+  createRoom: roomName => dispatch(actions.createRoom(roomName))
+});
 
 export default connect(
   null,
   mapDispatchToProps
-)(CreateChat)
+)(CreateChat);
