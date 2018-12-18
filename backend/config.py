@@ -32,7 +32,10 @@ class Config(object):
   MAIL_PASSWORD = os.environ.get('mail-password')
   OAUTH = dict(zip(('facebook', 'google'),
     (OAUTH_FACEBOOK_CONFIG, OAUTH_GOOGLE_CONFIG)))
-
+  CORS_ORIGIN_WHITELIST = [
+    'http://0.0.0.0:3000',
+    'http://localhost:3000'
+  ]
 
 class Production(Config):
   SQLALCHEMY_DATABASE_URI = os.environ.get('database-url') or \

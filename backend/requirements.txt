@@ -26,3 +26,4 @@ marshmallow>=2.16.3
 Flask_Bcrypt
 flask_apispec
 Flask-JWT-Extended
+flask-cors

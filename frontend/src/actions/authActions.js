@@ -1,4 +1,4 @@
-import { Auth } from "../requests";
+import { Auth } from "@requests";
 
 const login = (username, password) => dispatch => {
   dispatch({ type: "login-start" });
@@ -10,9 +10,10 @@ const login = (username, password) => dispatch => {
       });
     })
     .catch(error => {
+      console.log(error);
       dispatch({
         type: "login-failure",
-        error: "Login has failed"
+        error: error.message
       });
     });
 };

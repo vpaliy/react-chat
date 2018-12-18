@@ -1,5 +1,5 @@
 import Promise from "bluebird";
-import { Users, People, Rooms } from "../requests";
+import { Users, People, Rooms } from "@requests";
 
 export const fetchChat = () => dispatch => {
   dispatch({
