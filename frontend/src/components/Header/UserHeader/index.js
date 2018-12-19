@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 const Header = styled.div`
   padding: 0.8rem;
@@ -25,11 +26,15 @@ const Img = styled.img`
   background: #e0e0e0;
 `;
 
-const ProfileHeader = ({ avatarUrl, username }) => (
+const ProfileHeader = ({ image, username }) => (
   <Header>
-    <Img src={avatarUrl} alt={username} />
+    <Img src={image} alt={username} />
     <Title>{username}</Title>
   </Header>
 );
 
-export default ProfileHeader;
+const mapStateToProps = state => ({
+  ...state.auth.user
+});
+
+export default connect(mapStateToProps)(ProfileHeader);

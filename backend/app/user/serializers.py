@@ -5,7 +5,7 @@ class UserSchema(Schema):
   username = fields.Str()
   email = fields.Email()
   bio = fields.Str()
-  image = fields.Url()
+  image = fields.Url(attribute='avatar_url')
   password = fields.Str(load_only=True)
   createdAt = fields.DateTime(attribute='created_at', dump_only=True)
   updatedAt = fields.DateTime(attribute='updated_at')

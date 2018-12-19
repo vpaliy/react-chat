@@ -1,4 +1,5 @@
 import { Auth } from "@requests";
+import SessionManager from "@requests/authSession";
 
 const login = (username, password) => dispatch => {
   dispatch({ type: "login-start" });
@@ -6,7 +7,8 @@ const login = (username, password) => dispatch => {
     .then(response => {
       dispatch({
         type: "login-success",
-        token: response.token
+        token: response.token,
+        user: response.user
       });
     })
     .catch(error => {
@@ -23,13 +25,14 @@ const register = (email, username, password) => dispatch => {
     .then(response => {
       dispatch({
         type: "register-success",
-        token: response.token
+        token: response.token,
+        user: response.user
       });
     })
     .catch(error => {
       dispatch({
         type: "register-failure",
-        error: "Registration has failed"
+        error: error.message
       });
     });
 };
@@ -45,4 +48,9 @@ const forgotPassword = email => dispatch => {
     });
 };
 
-export { login, register, forgotPassword };
+const signOut = () => dispatch => {
+  SessionManager.deauthenticateUser();
+  dispatch({ type: "sign-out" });
+};
+
+export { login, register, forgotPassword, signOut };

@@ -14,7 +14,7 @@ const Form = styled.form`
   width: 100%;
 
   > * {
-    margin-right: 0.62rem;
+    margin-right: 1rem;
   }
 `;
 
@@ -23,6 +23,14 @@ const Button = styled.button`
   border: 0;
   background: #fff;
   padding: 0;
+`;
+
+const Input = styled.input`
+  flex: 1 1 100%;
+  padding: 1rem;
+  border: 0;
+  font-size: 1rem;
+  outline: none;
 `;
 
 class CreateChat extends React.Component {
@@ -47,7 +55,7 @@ class CreateChat extends React.Component {
   render() {
     return (
       <Form onSubmit={this.onCreate}>
-        <input
+        <Input
           type="text"
           onChange={this.onType}
           value={this.state.roomName}

@@ -27,3 +27,4 @@ Flask_Bcrypt
 flask_apispec
 Flask-JWT-Extended
 flask-cors
+future-fstrings

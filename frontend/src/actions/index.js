@@ -7,7 +7,7 @@ import {
 
 import { fetchChat, getChat, sendMessage } from "./chatActions";
 
-import { login, register, forgotPassword } from "./authActions";
+import { login, register, forgotPassword, signOut } from "./authActions";
 
 import { fetchUser } from "./userActions";
 
@@ -22,5 +22,6 @@ export const actions = Object.assign({
   createRoom,
   login,
   register,
-  forgotPassword
+  forgotPassword,
+  signOut
 });

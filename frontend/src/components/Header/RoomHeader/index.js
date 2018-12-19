@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { actions } from "@actions";
 import styled from "styled-components";
 
 const Header = styled.div`
@@ -18,9 +19,12 @@ const Title = styled.h1`
   margin: auto;
 `;
 
-const RoomHeader = ({ title }) => (
+const Button = styled.button``;
+
+const RoomHeader = ({ title, onSignOut }) => (
   <Header>
     <Title>{title}</Title>
+    <Button onClick={() => onSignOut()}>Log out</Button>
   </Header>
 );
 
@@ -28,4 +32,11 @@ const mapStateToProps = state => ({
   ...state.chat.header
 });
 
-export default connect(mapStateToProps)(RoomHeader);
+const mapDispatchToProps = dispatch => ({
+  onSignOut: () => dispatch(actions.signOut())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RoomHeader);

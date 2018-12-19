@@ -9,6 +9,8 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "sign-out":
+      return {...state, token: null }
     case "login-start":
     case "register-start":
     case "forgot-password-start":

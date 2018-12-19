@@ -25,6 +25,14 @@ const Button = styled.button`
   padding: 0;
 `;
 
+const Input = styled.input`
+  flex: 1 1 100%;
+  padding: 1rem;
+  border: 0;
+  font-size: 1rem;
+  outline: none;
+`;
+
 class CreateMessageForm extends React.Component {
   state = { message: null };
 
@@ -47,7 +55,7 @@ class CreateMessageForm extends React.Component {
   render() {
     return (
       <Form onSubmit={this.onSend}>
-        <input
+        <Input
           type="text"
           onChange={this.onType}
           value={this.state.message}
