@@ -1,5 +1,1 @@
-export {default} from './App'
-
-import * as actions from '../actions'
-
-export {  actions}
+export { default } from "./App";

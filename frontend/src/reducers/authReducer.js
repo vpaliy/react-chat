@@ -2,6 +2,7 @@ import SessionManager from "@requests/authSession";
 
 const initialState = {
   token: SessionManager.getToken(),
+  user: null,
   isLoading: false,
   error: null
 };
@@ -17,6 +18,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        user: action.user,
         token: action.token
       };
     case "login-failure":
@@ -24,6 +26,7 @@ const authReducer = (state = initialState, action) => {
     case "forgot-password-failure":
       return {
         ...state,
+        user: null,
         isLoading: false,
         error: action.error
       };
