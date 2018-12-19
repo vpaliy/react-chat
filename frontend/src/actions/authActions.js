@@ -10,7 +10,6 @@ const login = (username, password) => dispatch => {
       });
     })
     .catch(error => {
-      console.log(error);
       dispatch({
         type: "login-failure",
         error: error.message

@@ -1,5 +1,7 @@
+import SessionManager from "@requests/authSession";
+
 const initialState = {
-  token: null,
+  token: SessionManager.getToken(),
   isLoading: false,
   error: null
 };
