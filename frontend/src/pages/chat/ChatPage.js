@@ -7,8 +7,7 @@ import ProfileHeader from "Headers/UserHeader";
 import RoomHeader from "Headers/RoomHeader";
 import CreateMessageForm from "Inputs/CreateMessage";
 import CreateChatForm from "Inputs/CreateChat";
-import RoomsList from "Lists/RoomsList";
-import PeopleList from "Lists/PeopleList";
+import ContactsList from "Lists/ContactsList";
 
 const Main = styled.div`
   display: flex;
@@ -71,56 +70,20 @@ const Section = styled.div`
   overflow: hidden;
 `;
 
-class ChatPage extends React.Component {
-  static propTypes = {
-    createRoom: PropTypes.func.isRequired,
-    sendMessage: PropTypes.func.isRequired,
-    fetchContacts: PropTypes.func.isRequired
-  };
+const ChatPage = () => (
+  <Main>
+    <Aside>
+      <ProfileHeader />
+      <ContactsList />
+      <CreateChatForm />
+    </Aside>
+    <Section>
+      <RoomHeader />
+      <Column>
+        <CreateMessageForm />
+      </Column>
+    </Section>
+  </Main>
+);
 
-  static defaultProps = {
-    people: [],
-    rooms: [],
-    fetchContacts: () => {},
-    createRoom: () => {},
-    sendMessage: () => {}
-  };
-
-  componentWillMount() {
-    const { fetchContacts } = this.props;
-    fetchContacts();
-  }
-
-  render() {
-    return (
-      <Main>
-        <Aside>
-          <ProfileHeader />
-          <RoomsList rooms={this.props.rooms} />
-          <PeopleList people={this.props.people} />
-          <CreateChatForm />
-        </Aside>
-        <Section>
-          <RoomHeader />
-          <Column>
-            <CreateMessageForm />
-          </Column>
-        </Section>
-      </Main>
-    );
-  }
-}
-
-const mapStateToProps = state => ({
-  rooms: state.contacts.rooms,
-  people: state.contacts.people
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchContacts: () => dispatch(actions.fetchContacts())
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ChatPage);
+export default ChatPage;

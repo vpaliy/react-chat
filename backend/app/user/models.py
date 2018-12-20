@@ -45,7 +45,7 @@ class User(SurrogatePK, Model):
   @property
   def avatar_url(self):
     hash = hashlib.md5(self.email.lower()).hexdigest()
-    return f'https://www.gravatar.com/avatar/{hash}?s={str(50)}'
+    return f'https://www.gravatar.com/avatar/{hash}?d=identicon&s={str(50)}'
 
   def __repr__(self):
     return '<User {!r}>'.format(self.username)

@@ -28,7 +28,7 @@ def create_room(name, **kwargs):
   user = current_user
   try:
     room = Room.create(
-      name=email,
+      name=name,
       **kwargs
     )
   except IntegrityError:

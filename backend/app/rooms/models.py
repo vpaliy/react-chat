@@ -16,7 +16,7 @@ class Room(SurrogatePK, Model):
   @property
   def avatar_url(self):
     hash = hashlib.md5(self.name.lower()).hexdigest()
-    return f'https://www.gravatar.com/avatar/{hash}?s={str(50)}'
+    return f'https://www.gravatar.com/avatar/{hash}?d=identicon&s={str(50)}'
 
   def __repr__(self):
     return '<Room {!r}>'.format(self.name)

@@ -13,6 +13,15 @@ export const fetchContacts = () => dispatch => {
     .catch(error => {});
 };
 
-export const deleteUser = () => dispatch => {}
-export const deleteRoom = () => dispatch => {}
-export const createRoom = () => dispatch => {}
+export const deleteContact = contact => dispatch => {
+  dispatch({ type: "contacts-delete" });
+};
+
+export const deleteUser = () => dispatch => {};
+export const deleteRoom = () => dispatch => {};
+
+export const createRoom = room => dispatch => {
+  Rooms.createRoom(room).then(response => {
+    dispatch({ type: "create-room", room: response });
+  });
+};

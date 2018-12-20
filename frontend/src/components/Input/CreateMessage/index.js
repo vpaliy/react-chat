@@ -10,7 +10,6 @@ const Form = styled.form`
   align-items: center;
   border-top: 1px solid #e0e0e0;
   height: 3.6rem;
-  display: flex;
   width: 100%;
 
   > * {

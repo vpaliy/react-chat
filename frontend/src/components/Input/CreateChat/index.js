@@ -10,7 +10,6 @@ const Form = styled.form`
   align-items: center;
   border-top: 1px solid #e0e0e0;
   height: 3.6rem;
-  display: flex;
   width: 100%;
 
   > * {
@@ -38,6 +37,7 @@ class CreateChat extends React.Component {
 
   onCreate = event => {
     event.preventDefault();
+
     const { roomName } = this.state;
     const { createRoom } = this.props;
 
@@ -57,11 +57,11 @@ class CreateChat extends React.Component {
       <Form onSubmit={this.onCreate}>
         <Input
           type="text"
-          onChange={this.onType}
           value={this.state.roomName}
+          onChange={this.onType}
           placeholder="Create Room..."
         />
-        <Button>
+        <Button onClick={this.onCreate}>
           <SmallIcon>
             <use xlinkHref="index.svg#add" />
           </SmallIcon>

@@ -20,12 +20,13 @@ const responseBody = response => {
 };
 
 const errorMessage = error => {
-  if (error.response.text !== undefined) {
+  const response = error.response;
+  if (response !== undefined && response.text !== undefined) {
     const errorObject = JSON.parse(error.response.text);
     throw {
       name: "HTTP Request Failed",
       message: errorObject.message,
-      toString: () => `${this.name}:${this.message}`
+      toString: () => `${errorObject.message}`
     };
   }
   throw error;

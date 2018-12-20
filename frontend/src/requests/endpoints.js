@@ -3,7 +3,7 @@ import requests from "./requests";
 
 export const Rooms = {
   getRooms: () => requests.get("/rooms"),
-  createRoom: room => requests.post("/rooms", { room })
+  createRoom: room => requests.post("/rooms", { roomName: room })
 };
 
 export const Users = {
@@ -14,7 +14,7 @@ export const Users = {
 export const Contacts = {
   fetchContacts: () =>
     Promise.join(Users.getUsers(), Rooms.getRooms(), (users, rooms) => ({
-      users,
+      people: users,
       rooms
     }))
 };
