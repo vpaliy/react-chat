@@ -5,7 +5,7 @@ const baseUrl = "http://localhost:5000/api";
 
 const tokenPlugin = request => {
   if (SessionManager.isUserAuthenticated()) {
-    request.set("Authorization", SessionManager.getToken());
+    request.set("Authorization", `Token ${SessionManager.getToken()}`);
   }
 };
 
@@ -43,7 +43,7 @@ const requests = {
 
   get: (url, query = {}) =>
     superagent
-      .get(url)
+      .get(`${baseUrl}${url}`)
       .use(tokenPlugin)
       .query(query)
       .set("Accept", "application/json")
@@ -52,7 +52,7 @@ const requests = {
 
   delete: url =>
     superagent
-      .delete(url)
+      .get(`${baseUrl}${url}`)
       .use(tokenPlugin)
       .then(responseBody)
       .catch(errorMessage)

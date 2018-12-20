@@ -6,6 +6,8 @@ def template(message=str(), code=500):
 
 USER_NOT_FOUND = template('User not found', code=404)
 USER_ALREADY_REGISTERED = template('User already registered', code=422)
+ROOM_NOT_FOUND = template('Room not found', code=404)
+ROOM_ALREADY_EXISTS = template('Room already exists', code=422)
 UNKNOWN_ERROR = template(code=500)
 
 
@@ -29,3 +31,7 @@ class InvalidUsage(Exception):
   @classmethod
   def user_already_registered(cls):
     return cls(**USER_ALREADY_REGISTERED)
+
+  @classmethod
+  def room_already_exists(cls):
+    return cls(**ROOM_ALREADY_EXISTS)

@@ -13,15 +13,11 @@ export const Users = {
 
 export const Contacts = {
   fetchContacts: () =>
-    Promise.join(
-      Users.getUsers(),
-      Rooms.getRooms(),
-      (usersResponse, roomsResponse) => ({
-        users: usersResponse.users,
-        rooms: roomsResponse.rooms
-      })
-    )
-}
+    Promise.join(Users.getUsers(), Rooms.getRooms(), (users, rooms) => ({
+      users,
+      rooms
+    }))
+};
 
 export const Auth = {
   login: (username, password) =>

@@ -38,7 +38,7 @@ const Title = styled.span`
 
 const Room = ({ room, onRemove, onSelect }) => (
   <Wrapper onClick={() => onSelect(room.id)} disabled={room.active}>
-    <Image src={room.avatarUrl} alt={room.roomName} />
+    <Image src={room.image} alt={room.roomName} />
     <Title>{room.roomName}</Title>
   </Wrapper>
 );

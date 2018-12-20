@@ -1,9 +1,9 @@
 import Promise from "bluebird";
-import { Users, Rooms } from "@requests";
+import { Users, Rooms, Contacts } from "@requests";
 
 export const fetchContacts = () => dispatch => {
   dispatch({ type: "contacts-start" });
-  Users.getContacts()
+  Contacts.fetchContacts()
     .then(response => {
       dispatch({
         type: "contacts-finish",

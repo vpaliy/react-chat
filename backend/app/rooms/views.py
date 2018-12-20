@@ -1,3 +1,5 @@
+import datetime as dt
+
 from app.rooms import rooms
 from app.database import db
 from app.rooms.models import Room
@@ -17,20 +19,40 @@ def get_rooms():
   user = current_user
   return Room.query.all()
 
+
 @rooms.route('/api/rooms', methods=('POST', ))
 @use_kwargs(room_schema)
+@marshal_with(room_schema)
 @jwt_required
-def create_room(**kwargs):
-  pass
+def create_room(name, **kwargs):
+  user = current_user
+  try:
+    room = Room.create(
+      name=email,
+      **kwargs
+    )
+  except IntegrityError:
+    db.session.rollback()
+    raise InvalidUsage.room_already_exists()
+  return room
 
 
 @rooms.route('/api/rooms', methods=('DELETE', ))
 @use_kwargs(room_schema)
+@jwt_required
 def delete_room(id, **kwargs):
-  pass
+  room = Room.query.filter_by(id=id).first()
+  room.delete()
+  return 'Room has been deleted', 200
 
 
 @rooms.route('/api/rooms', methods=('PUT', ))
 @use_kwargs(room_schema)
-def update_room(**kwargs):
-  pass
+@marshal_with(room_schema)
+@jwt_required
+def update_room(id, **kwargs):
+  room = Room.query.filter_by(id=id).first()
+  if room is not None:
+    raise InvalidUsage.room_not_found()
+  room.update(updatedAt=dt.datetime.utcnow(), **kwargs)
+  return room
