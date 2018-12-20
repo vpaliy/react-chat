@@ -1,53 +1,18 @@
 import Promise from "bluebird";
-import { Users, People, Rooms } from "@requests";
+import { Users, Rooms } from "@requests";
 
 export const fetchContacts = () => dispatch => {
   dispatch({ type: "contacts-start" });
-  Promise.join(
-    People.getPeople(),
-    Rooms.getRooms(),
-    (peopleResponse, roomsResponse) => {
+  Users.getContacts()
+    .then(response => {
       dispatch({
         type: "contacts-finish",
-        people: peopleResponse.payload,
-        rooms: roomsResponse.payload
+        ...response
       });
-    }
-  );
+    })
+    .catch(error => {});
 };
 
-export const deleteUser = (user, index) => dispatch => {
-  dispatch({
-    type: "delete-user-start",
-    user
-  });
-  Users.delete(user).catch(error => {
-    dispatch({
-      type: "delete-user-failed",
-      user,
-      index
-    });
-  });
-};
-
-export const deleteRoom = (room, index) => dispatch => {
-  dispatch({
-    type: "delete-room-start",
-    room
-  });
-
-  Rooms.delete(room).catch(error => {
-    dispatch({
-      type: "delete-room-failed",
-      room,
-      index
-    });
-  });
-};
-
-export const createRoom = name => dispatch => {
-  dispatch({
-    type: "create-room",
-    name
-  });
-};
+export const deleteUser = () => dispatch => {}
+export const deleteRoom = () => dispatch => {}
+export const createRoom = () => dispatch => {}

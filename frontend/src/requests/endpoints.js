@@ -1,16 +1,27 @@
+import Promise from "bluebird";
 import requests from "./requests";
-
-export const People = {};
 
 export const Rooms = {
   getRooms: () => requests.get("/rooms"),
-  addRoom: room => requests.post("/rooms", { room })
+  createRoom: room => requests.post("/rooms", { room })
 };
 
 export const Users = {
   getUsers: () => requests.get("/users"),
   addUser: user => requests.post("/users", { user })
 };
+
+export const Contacts = {
+  fetchContacts: () =>
+    Promise.join(
+      Users.getUsers(),
+      Rooms.getRooms(),
+      (usersResponse, roomsResponse) => ({
+        users: usersResponse.users,
+        rooms: roomsResponse.rooms
+      })
+    )
+}
 
 export const Auth = {
   login: (username, password) =>

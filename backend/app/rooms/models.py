@@ -1,7 +1,7 @@
-from app.database import Model, Column, db, relationship
+from app.database import Model, Column, SurrogatePK, db, relationship
+import datetime as dt
 
-
-class Room(Model):
+class Room(SurrogatePK, Model):
   __tablename__ = 'rooms'
 
   name = Column(db.String(80), unique=True, nullable=False)

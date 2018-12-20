@@ -1,5 +1,5 @@
 import React from "react";
-import ContactUser from "Profile/ContactUser";
+import ContactUser from "Profiles/User";
 import styled from "styled-components";
 
 const List = styled.div`
@@ -28,11 +28,6 @@ const Header = styled.h3`
   color: rgba(0, 0, 0, 0.58);
 `;
 
-const Wrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
 
 const PeopleList = ({ people, onRemove, onSelect }) =>
   people.length > 0 ? (

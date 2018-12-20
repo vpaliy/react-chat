@@ -1,5 +1,5 @@
 import React from "react";
-import Room from "Profile/Room";
+import Room from "Profiles/Room";
 import styled from "styled-components";
 
 const List = styled.div`

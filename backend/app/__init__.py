@@ -6,10 +6,12 @@ from app.exceptions import InvalidUsage
 def register_blueprints(app):
   from app.user import users
   from app.main import main
+  from app.rooms import rooms
 
   app.register_blueprint(main)
   app.register_blueprint(users)
-
+  app.register_blueprint(rooms)
+  
 
 def register_error_handlers(app):
   def error_handler(error):

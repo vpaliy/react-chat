@@ -21,4 +21,4 @@ def identity_loader(user):
 
 @jwt.user_loader_callback_loader
 def user_loader(identity):
-  return User.query.filter_by(id=identity)
+  return User.query.filter_by(id=identity).first()

@@ -37,7 +37,7 @@ const Title = styled.span`
 `;
 
 const ContactUser = ({ user, onRemove, onSelect }) => (
-  <Wrapper onClick={() => onSelect(room.id)} disabled={user.active}>
+  <Wrapper onClick={() => onSelect(user.id)} disabled={user.active}>
     <Image src={user.avatarUrl} />
     <Title>{user.username}</Title>
   </Wrapper>

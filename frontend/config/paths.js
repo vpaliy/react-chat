@@ -73,6 +73,8 @@ module.exports = {
     "@reducers": path.resolve("src/reducers/"),
     "@requests": path.resolve("src/requests/"),
     Utils: path.resolve("src/utils/"),
+    AuthPage: path.resolve("src/pages/auth"),
+    ChatPage: path.resolve("src/pages/chat"),
     Headers: path.resolve("src/components/Header"),
     Footers: path.resolve("src/components/Footer"),
     Buttons: path.resolve("src/components/Button"),

@@ -46,6 +46,7 @@ def login(username, password, **kwargs):
 @marshal_with(users_schema)
 @jwt_required
 def get_users():
+  user = current_user
   return User.query.all()
 
 
