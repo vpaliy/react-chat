@@ -7,11 +7,13 @@ def register_blueprints(app):
   from app.user import users
   from app.main import main
   from app.rooms import rooms
+  from app.auth import auth
 
   app.register_blueprint(main)
   app.register_blueprint(users)
   app.register_blueprint(rooms)
-  
+  app.register_blueprint(auth)
+
 
 def register_error_handlers(app):
   def error_handler(error):

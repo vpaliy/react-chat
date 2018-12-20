@@ -50,10 +50,11 @@ class User(SurrogatePK, Model):
   def __repr__(self):
     return '<User {!r}>'.format(self.username)
 
+    
 
 class TokenizedUser(object):
-  __slots__ = ('token', 'user')
+  __slots__ = ('auth', 'user')
 
-  def __init__(self, token, user):
-    self.token = token
+  def __init__(self, auth, user):
+    self.auth = auth
     self.user = user

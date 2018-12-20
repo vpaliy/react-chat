@@ -1,5 +1,5 @@
 from marshmallow import Schema, fields, post_dump
-
+from app.auth.serializers import AuthSchema
 
 class UserSchema(Schema):
   username = fields.Str()
@@ -17,7 +17,7 @@ class UserSchema(Schema):
 
 
 class TokenizedUserSchema(Schema):
-  token = fields.Str(dump_only=True)
+  auth = fields.Nested(AuthSchema)
   user = fields.Nested(UserSchema)
 
 

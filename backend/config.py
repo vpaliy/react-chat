@@ -1,4 +1,5 @@
 import os
+import datetime as dt
 from collections import namedtuple
 
 from dotenv import load_dotenv
@@ -25,6 +26,8 @@ class Config(object):
   JWT_AUTH_USERNAME_KEY = 'email'
   JWT_AUTH_HEADER_PREFIX = 'Token'
   JWT_HEADER_TYPE = 'Token'
+  JWT_REFRESH_TOKEN_EXPIRES = False
+  JWT_ACCESS_TOKEN_EXPIRES = dt.timedelta(minutes=30)
   MAIL_SERVER = os.environ.get('mail-server')
   MAIL_PORT = int(os.environ.get('mail-port') or 25)
   MAIL_USE_TLS = os.environ.get('mail-use-tls') is not None

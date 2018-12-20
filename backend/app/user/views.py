@@ -1,5 +1,6 @@
 from app.user import users
 from app.database import db
+from app.auth.models import AuthModel
 from app.user.models import User, TokenizedUser
 from flask_apispec import use_kwargs, marshal_with
 from app.exceptions import InvalidUsage
@@ -7,7 +8,7 @@ from sqlalchemy.exc import IntegrityError
 from app.user.serializers import (user_schema,
     users_schema, tokenized_user_schema)
 from flask_jwt_extended import (jwt_required,
-    jwt_optional, create_access_token, current_user)
+    jwt_optional, current_user)
 
 
 @users.route('/api/users/register', methods=('POST',))
@@ -24,8 +25,8 @@ def register(username, password, email, **kwargs):
   except IntegrityError:
     db.session.rollback()
     raise InvalidUsage.user_already_registered()
-  token = create_access_token(identity=user)
-  return TokenizedUser(token, user)
+  auth = AuthModel.create(identity=user)
+  return TokenizedUser(auth, user)
 
 
 @users.route('/api/users/login', methods=('POST',))
@@ -37,8 +38,8 @@ def login(username, password, **kwargs):
   if user is None:
     user = User.query.filter_by(email=username).first()
   if user is not None and user.check_password(password):
-    token = create_access_token(identity=user)
-    return TokenizedUser(token, user)
+    auth = AuthModel.create(identity=user)
+    return TokenizedUser(auth, user)
   raise InvalidUsage.user_not_found()
 
 
