@@ -15,7 +15,7 @@ def oauth_authorize(provider):
   return provider.authorize()
 
 
-@auth.route('/api/refresh')
+@auth.route('/api/refresh', methods=('POST', 'GET'))
 @marshal_with(auth_schema)
 @jwt_refresh_token_required
 def refresh_token(**kwargs):

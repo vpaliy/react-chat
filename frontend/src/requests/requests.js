@@ -1,28 +1,24 @@
 import superagent from "superagent";
 import SessionManager from "./authSession";
+import applyMiddleware from "./middleware";
+import TokenRefresher from "./jwt";
 
 const baseUrl = "http://localhost:5000/api";
+const responseBody = response => response.body;
+
+const tokenRefresher = new TokenRefresher(`${baseUrl}/refresh`);
 
 const tokenPlugin = request => {
   if (SessionManager.isUserAuthenticated()) {
-    request.set("Authorization", `Token ${SessionManager.getToken()}`);
+    const accessToken = SessionManager.getAccessToken();
+    request.set("Authorization", `Token ${accessToken}`);
   }
-};
-
-const responseBody = response => {
-  const body = response.body;
-  if (body !== undefined) {
-    if (body.token !== undefined) {
-      SessionManager.authenticateUser(body.token);
-    }
-  }
-  return body;
 };
 
 const errorMessage = error => {
   const response = error.response;
-  if (response !== undefined && response.text !== undefined) {
-    const errorObject = JSON.parse(error.response.text);
+  if (response && response.text) {
+    const errorObject = JSON.parse(response.text);
     throw {
       name: "HTTP Request Failed",
       message: errorObject.message,
@@ -30,6 +26,19 @@ const errorMessage = error => {
     };
   }
   throw error;
+};
+
+const middleware = request => {
+  if (SessionManager.isUserAuthenticated()) {
+    if (SessionManager.hasExpired()) {
+      const token = SessionManager.getRefreshToken();
+      return tokenRefresher
+        .refresh(token)
+        .then(request)
+        .catch(errorMessage);
+    }
+  }
+  return request();
 };
 
 const requests = {
@@ -59,4 +68,4 @@ const requests = {
       .catch(errorMessage)
 };
 
-export default requests;
+export default applyMiddleware(middleware)(requests);

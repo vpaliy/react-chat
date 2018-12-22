@@ -1,5 +1,4 @@
 import { Auth } from "@requests";
-import SessionManager from "@requests/authSession";
 
 const login = (username, password) => dispatch => {
   dispatch({ type: "login-start" });
@@ -49,7 +48,7 @@ const forgotPassword = email => dispatch => {
 };
 
 const signOut = () => dispatch => {
-  SessionManager.deauthenticateUser();
+  Auth.signOut();
   dispatch({ type: "sign-out" });
 };
 

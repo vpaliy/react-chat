@@ -14,7 +14,7 @@ const configureStore = (history, preloadedState) =>
       applyMiddleware(
         routerMiddleware(history),
         thunkMiddleware,
-        loggerMiddleware
+        loggerMiddleware,
       )
     )
   );
