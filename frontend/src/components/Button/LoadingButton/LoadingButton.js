@@ -34,7 +34,6 @@ const Loader = styled.div`
   animation: ${spin} 2s linear infinite;
 `;
 
-
 const LoadingButton = ({ title, isLoading, isEnabled }) => {
   return isLoading ? (
     <Loader />

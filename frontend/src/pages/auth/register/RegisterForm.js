@@ -6,7 +6,7 @@ import AuthFooter from "Footers/AuthFooter";
 import { Header, Form, Input, Page, Logo } from "../auth";
 import { connect } from "react-redux";
 import { actions } from "@actions";
-import { isEmail } from "Utils";
+import { isEmail, strings } from "Utils";
 
 class RegisterForm extends React.Component {
   state = {
@@ -57,44 +57,44 @@ class RegisterForm extends React.Component {
     return (
       <Page>
         <Logo />
-        <Header>Sign Up</Header>
+        <Header>{strings.labels.signUp}</Header>
         <Form onSubmit={this.onSubmit}>
           <Input
             type="email"
             name="email"
             value={this.state.email}
             onChange={this.onFormChange}
-            placeholder="Email"
+            placeholder={strings.forms.email}
           />
           <Input
             type="text"
             name="username"
             value={this.state.username}
             onChange={this.onFormChange}
-            placeholder="Username"
+            placeholder={strings.forms.username}
           />
           <Input
             type="password"
             name="password"
             value={this.state.password}
             onChange={this.onFormChange}
-            placeholder="Password"
+            placeholder={strings.forms.password}
           />
           <Input
             type="password"
             name="repeatedPassword"
             value={this.state.repeatedPassword}
             onChange={this.onFormChange}
-            placeholder="Repeat Password"
+            placeholder={strings.forms.repeatPassword}
           />
           <LoadingButton
-            title="Sign Up"
+            title={strings.labels.signUp}
             isLoading={this.props.isLoading}
             isEnabled={this.state.isButtonEnabled}
           />
         </Form>
         <ErrorMessage error={this.props.error} />
-        <AuthFooter path="/login" text="Already have an account?" />
+        <AuthFooter path="/login" text={strings.labels.alreadyRegistered} />
       </Page>
     );
   }

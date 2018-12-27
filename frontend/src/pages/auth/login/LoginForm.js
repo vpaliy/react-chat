@@ -6,6 +6,7 @@ import ErrorMessage from "Messages/ErrorMessage";
 import LoadingButton from "Buttons/LoadingButton";
 import AuthFooter from "Footers/AuthFooter";
 import { actions } from "@actions";
+import { strings } from "Utils";
 import { Header, Form, Input, Page, Logo } from "../auth";
 
 class LoginForm extends React.Component {
@@ -54,30 +55,30 @@ class LoginForm extends React.Component {
     return (
       <Page>
         <Logo />
-        <Header>Sign In</Header>
+        <Header>{strings.labels.signIn}</Header>
         <Form onSubmit={this.onSubmit}>
           <Input
             type="text"
             name="username"
             value={this.state.username}
             onChange={this.onFieldChange}
-            placeholder="Email or username"
+            placeholder={strings.forms.usernameEmail}
           />
           <Input
             type="password"
             name="password"
             value={this.state.password}
             onChange={this.onFieldChange}
-            placeholder="Password"
+            placeholder={strings.forms.password}
           />
           <LoadingButton
-            title="Log In"
+            title={strings.labels.signIn}
             isLoading={isLoading}
             isEnabled={this.state.isButtonEnabled}
           />
         </Form>
         <ErrorMessage error={error} />
-        <AuthFooter path="/forgot" text="Forgot Password?" />
+        <AuthFooter path="/forgot" text={strings.labels.forgotPassword} />
       </Page>
     );
   }

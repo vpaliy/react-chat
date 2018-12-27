@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { actions } from "@actions";
+import { strings } from "Utils";
 import styled from "styled-components";
 
 const Header = styled.div`
@@ -24,7 +25,7 @@ const Button = styled.button``;
 const RoomHeader = ({ title, onSignOut }) => (
   <Header>
     <Title>{title}</Title>
-    <Button onClick={() => onSignOut()}>Log out</Button>
+    <Button onClick={() => onSignOut()}>{strings.labels.signOut}</Button>
   </Header>
 );
 

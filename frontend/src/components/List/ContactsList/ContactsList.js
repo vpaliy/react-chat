@@ -3,8 +3,10 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { actions } from "@actions";
-import PeopleList from "./People";
-import RoomsList from "./Rooms";
+import { strings } from "Utils";
+import createList from "./CreateLists";
+import ContactUser from "Profiles/User";
+import Room from "Profiles/Room";
 
 const Wrapper = styled.div`
   flex: 1 1 100%;
@@ -15,6 +17,15 @@ const Wrapper = styled.div`
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 `;
+
+const PeopleList = createList(
+  item => ContactUser({ user: item }),
+  strings.labels.people
+);
+const RoomsList = createList(
+  item => Room({ room: item }),
+  strings.labels.rooms
+);
 
 class ContactsList extends React.Component {
   static propTypes = {
@@ -33,15 +44,15 @@ class ContactsList extends React.Component {
     onSelect: () => {}
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchContacts();
   }
 
   render() {
     return (
       <Wrapper>
-        <RoomsList {...this.props} />
-        <PeopleList {...this.props} />
+        <RoomsList items={this.props.rooms} />
+        <PeopleList items={this.props.people} />
       </Wrapper>
     );
   }

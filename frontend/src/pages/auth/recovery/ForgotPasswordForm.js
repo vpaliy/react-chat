@@ -5,6 +5,7 @@ import ErrorMessage from "Messages/ErrorMessage";
 import LoadingButton from "Buttons/LoadingButton";
 import AuthFooter from "Footers/AuthFooter";
 import { actions } from "@actions";
+import { strings } from "Utils";
 import { Header, Form, Input, Page, Logo } from "../auth";
 
 class ForgotPasswordForm extends React.Component {
@@ -44,22 +45,22 @@ class ForgotPasswordForm extends React.Component {
     return (
       <Page>
         <Logo />
-        <Header>Forgot password?</Header>
+        <Header>{strings.labels.forgotPassword}</Header>
         <Form onSubmit={this.onSubmit}>
           <Input
             type="text"
             value={this.state.username}
             onChange={this.onEmailChange}
-            placeholder="Email or username"
+            placeholder={strings.forms.usernameEmail}
           />
           <LoadingButton
-            title="Submit"
+            title={strings.labels.submit}
             isLoading={this.props.isLoading}
             isEnabled={this.state.isButtonEnabled}
           />
         </Form>
         <ErrorMessage error={this.props.error} />
-        <AuthFooter path="/login" text="Nope, remember it" />
+        <AuthFooter path="/login" text={strings.labels.nopeRememeber} />
       </Page>
     );
   }

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { actions } from "@actions";
 import { SmallIcon } from "Common";
+import { strings } from "Utils";
 
 const Form = styled.form`
   flex: none;
@@ -59,7 +60,7 @@ class CreateChat extends React.Component {
           type="text"
           value={this.state.roomName}
           onChange={this.onType}
-          placeholder="Create Room..."
+          placeholder={strings.labels.createRoom}
         />
         <Button onClick={this.onCreate}>
           <SmallIcon>

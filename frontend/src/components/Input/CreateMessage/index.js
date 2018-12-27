@@ -3,6 +3,7 @@ import { actions } from "@actions";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { SmallIcon } from "Common";
+import { strings } from "Utils";
 
 const Form = styled.form`
   flex: none;
@@ -58,7 +59,7 @@ class CreateMessageForm extends React.Component {
           type="text"
           onChange={this.onType}
           value={this.state.message}
-          placeholder="Message..."
+          placeholder={strings.forms.createMessage}
         />
         <Button>
           <SmallIcon>

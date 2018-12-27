@@ -1,4 +1,6 @@
+import React from "react";
 import styled from "styled-components";
+import ContactUser from "Profiles/User";
 
 export const List = styled.div`
   margin: 0;
@@ -23,3 +25,19 @@ export const Header = styled.h3`
   text-align: left;
   color: rgba(0, 0, 0, 0.58);
 `;
+
+const createList = (Component, title) => {
+  return class extends React.Component {
+    render() {
+      const { items } = this.props;
+      return items.length > 0 ? (
+        <List>
+          <Header>{title}</Header>
+          <Wrapper>{items.map(item => Component(item))}</Wrapper>
+        </List>
+      ) : null;
+    }
+  };
+};
+
+export default createList;
