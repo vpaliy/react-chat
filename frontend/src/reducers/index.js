@@ -6,12 +6,10 @@ import chat from "./chatReducer";
 import header from "./headerReducer";
 import auth from "./authReducer";
 
-export default history =>
-  combineReducers({
-    router: connectRouter(history),
-    auth,
-    participants,
-    header,
-    contacts,
-    chat
-  });
+export default combineReducers({
+  auth,
+  participants,
+  header,
+  contacts,
+  chat
+});

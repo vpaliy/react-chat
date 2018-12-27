@@ -1,21 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import { ConnectedRouter } from "connected-react-router";
-import { createBrowserHistory } from "history";
 import PropTypes from "prop-types";
 import App from "./pages/App";
 import configureStore from "./store/configureStore";
 
-const history = createBrowserHistory();
-const store = configureStore(history);
+const store = configureStore();
 
 const Root = () => (
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
+    <Router>
+      <Route path="/" component={App} />
+    </Router>
   </Provider>
 );
+
+Root.propTypes = {
+  store: PropTypes.object.isRequired
+};
 
 ReactDOM.render(<Root />, document.getElementById("root"));

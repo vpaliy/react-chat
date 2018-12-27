@@ -6,17 +6,11 @@ import rootReducer from "@reducers";
 
 const loggerMiddleware = createLogger();
 
-const configureStore = (history, preloadedState) =>
+const configureStore = preloadedState =>
   createStore(
-    rootReducer(history),
+    rootReducer,
     preloadedState,
-    compose(
-      applyMiddleware(
-        routerMiddleware(history),
-        thunkMiddleware,
-        loggerMiddleware,
-      )
-    )
+    applyMiddleware(thunkMiddleware, loggerMiddleware)
   );
 
 export default configureStore;

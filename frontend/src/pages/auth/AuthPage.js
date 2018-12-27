@@ -7,7 +7,6 @@ import ForgotPasswordForm from "ForgotPasswordForm";
 
 const AuthPage = () => (
   <Switch>
-    <Route exact path="/" component={LoginForm} />
     <Route exact path="/login" component={LoginForm} />
     <Route exact path="/register" component={RegisterForm} />
     <Route exact path="/forgot" component={ForgotPasswordForm} />
