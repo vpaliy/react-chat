@@ -9,7 +9,7 @@ const responseBody = response => response.body;
 const tokenRefresher = new TokenRefresher(`${baseUrl}/refresh`);
 
 const tokenPlugin = request => {
-  if (SessionManager.isUserAuthenticated()) {
+  if (SessionManager.hasTokens()) {
     const accessToken = SessionManager.getAccessToken();
     request.set("Authorization", `Token ${accessToken}`);
   }
@@ -29,13 +29,12 @@ const errorMessage = error => {
 };
 
 const middleware = request => {
-  if (SessionManager.isUserAuthenticated()) {
-    if (SessionManager.hasExpired()) {
+  if (SessionManager.hasTokens()) {
+    if (SessionManager.isExpired()) {
       const token = SessionManager.getRefreshToken();
       return tokenRefresher
-        .refresh(token)
-        .then(request)
-        .catch(errorMessage);
+        .refresh(token, SessionManager.save)
+        .then(request);
     }
   }
   return request();

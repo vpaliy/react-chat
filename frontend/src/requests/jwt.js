@@ -5,7 +5,7 @@ import SessionManager from "./authSession";
 export const saveAuth = response => {
   const auth = response.auth;
   if (auth) {
-    SessionManager.authenticateUser(auth);
+    SessionManager.save(auth);
     return {
       token: auth.access_token,
       user: response.user
@@ -14,7 +14,6 @@ export const saveAuth = response => {
   return response;
 };
 
-
 class TokenRefresher {
   constructor(url) {
     this.url = url;
@@ -22,7 +21,7 @@ class TokenRefresher {
     this.emitter = new EventEmitter();
   }
 
-  refresh = async token => {
+  refresh = async (token, onReceive) => {
     if (!this.locked) {
       this.locked = true;
       return superagent
@@ -30,7 +29,7 @@ class TokenRefresher {
         .set("Authorization", `Token ${token}`)
         .set("Accept", "application/json")
         .then(res => {
-          SessionManager.authenticateUser(res.body);
+          onReceive(token);
           this.release();
           return Promise.resolve();
         });
